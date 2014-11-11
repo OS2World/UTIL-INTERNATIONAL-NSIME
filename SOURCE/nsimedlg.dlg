@@ -1,0 +1,116 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+DLGINCLUDE 1 "nsimedlg.h"
+
+DLGTEMPLATE DIALOGID_NSIME_SETTING_JP LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "NSIME - 設定", DIALOGID_NSIME_SETTING_JP, 0, 0, 156, 177, 
+            WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        AUTOCHECKBOX    "MS-IME互換のIMEオン/オフ操作", 
+                        DID_NSIME_CHKB_MSLIKE_ENABLE, 6, 159, 144, 12, 
+                        WS_GROUP
+        GROUPBOX        "設定", DID_NSIME_GROUP_MSLIKE_SET, 6, 78, 144, 81
+        AUTOCHECKBOX    "オン/オフ操作後、IMEを監視", 
+                        DID_NSIME_CHKB_MSLIKE_DELAY, 12, 135, 132, 12
+        GROUPBOX        "IME制御ボタンの設定", DID_NSIME_GROUP_MSLIKE_ACT, 
+                        12, 84, 132, 51
+        LTEXT           "Mode", DID_NSIME_LTXT_NLS, 48, 114, 30, 9, 
+                        DT_BOTTOM
+        LTEXT           "Width", DID_NSIME_LTXT_WIDTH, 78, 114, 30, 9, 
+                        DT_BOTTOM
+        LTEXT           "Romaji", DID_NSIME_LTXT_ROMAJI, 108, 114, 30, 9, 
+                        DT_BOTTOM
+        LTEXT           "オン時:", DID_NSIME_LTXT_MSLIKE_ACTIVE, 18, 102, 29, 
+                        12, DT_VCENTER
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_ACT_NLS, 48, 102, 30, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | LS_HORZSCROLL | 
+                        WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_ACT_WIDTH, 78, 102, 30, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_ACT_ROMAJI, 108, 102, 30, 
+                        12, WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        LTEXT           "オフ時:", DID_NSIME_LTXT_MSLIKE_DEACTIVE, 18, 90, 
+                        30, 12, DT_VCENTER
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_DEA_NLS, 48, 90, 30, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | LS_HORZSCROLL | 
+                        WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_DEA_WIDTH, 78, 90, 30, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_DEA_ROMAJI, 108, 90, 30, 
+                        12, WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        LTEXT           "IME制御ボタン表示:", DID_NSIME_LTXT_VISIBLE_ENABLE, 
+                        6, 60, 144, 12, DT_VCENTER
+        AUTORADIOBUTTON "常に表示", DID_NSIME_RADIO_VISIBLE_ALWAYS, 6, 48, 
+                        144, 12, WS_TABSTOP
+        AUTORADIOBUTTON "IME使用可能時および使用時", 
+                        DID_NSIME_RADIO_VISIBLE_CANUSE, 6, 36, 144, 12, 
+                        WS_TABSTOP
+        AUTORADIOBUTTON "IME使用時だけ", DID_NSIME_RADIO_VISIBLE_ONLYUSE, 6, 
+                        24, 144, 12, WS_TABSTOP
+        DEFPUSHBUTTON   "了解(~O)", DID_OK, 29, 4, 42, 14, WS_GROUP
+        PUSHBUTTON      "取消(~C)", DID_CANCEL, 83, 4, 42, 14
+    END
+END
+
+DLGTEMPLATE DIALOGID_NSIME_SETTING_EN LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "NSIME - Settings", DIALOGID_NSIME_SETTING_EN, 0, 0, 156, 177, 
+            WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        AUTOCHECKBOX    "MS-IME compatible on/off operation", 
+                        DID_NSIME_CHKB_MSLIKE_ENABLE, 6, 159, 144, 12, 
+                        WS_GROUP
+        GROUPBOX        "Settings", DID_NSIME_GROUP_MSLIKE_SET, 6, 78, 144, 
+                        81
+        AUTOCHECKBOX    "Watch IME after on/off operation", 
+                        DID_NSIME_CHKB_MSLIKE_DELAY, 12, 135, 132, 12
+        GROUPBOX        "IME mode button setting", 
+                        DID_NSIME_GROUP_MSLIKE_ACT, 12, 84, 132, 51
+        LTEXT           "Mode", DID_NSIME_LTXT_NLS, 36, 114, 42, 9, 
+                        DT_BOTTOM
+        LTEXT           "Width", DID_NSIME_LTXT_WIDTH, 78, 114, 30, 9, 
+                        DT_BOTTOM
+        LTEXT           "Romaji", DID_NSIME_LTXT_ROMAJI, 108, 114, 30, 9, 
+                        DT_BOTTOM
+        LTEXT           "On:", DID_NSIME_LTXT_MSLIKE_ACTIVE, 18, 102, 18, 12, 
+                        DT_VCENTER
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_ACT_NLS, 36, 102, 42, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | LS_HORZSCROLL | 
+                        WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_ACT_WIDTH, 78, 102, 30, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_ACT_ROMAJI, 108, 102, 30, 
+                        12, WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        LTEXT           "Off:", DID_NSIME_LTXT_MSLIKE_DEACTIVE, 18, 90, 18, 
+                        12, DT_VCENTER
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_DEA_NLS, 36, 90, 42, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | LS_HORZSCROLL | 
+                        WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_DEA_WIDTH, 78, 90, 30, 12, 
+                        WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        CONTROL         "", DID_NSIME_COMB_MSLIKE_DEA_ROMAJI, 108, 90, 30, 
+                        12, WC_COMBOBOX, CBS_DROPDOWNLIST | WS_GROUP | 
+                        WS_TABSTOP | WS_VISIBLE
+        LTEXT           "IME mode button show:", 
+                        DID_NSIME_LTXT_VISIBLE_ENABLE, 6, 60, 144, 12, 
+                        DT_VCENTER
+        AUTORADIOBUTTON "Already", DID_NSIME_RADIO_VISIBLE_ALWAYS, 6, 48, 
+                        144, 12, WS_TABSTOP
+        AUTORADIOBUTTON "Enable use IME, and using IME", 
+                        DID_NSIME_RADIO_VISIBLE_CANUSE, 6, 36, 144, 12, 
+                        WS_TABSTOP
+        AUTORADIOBUTTON "Only using IME", DID_NSIME_RADIO_VISIBLE_ONLYUSE, 6, 
+                        24, 144, 12, WS_TABSTOP
+        DEFPUSHBUTTON   "~OK", DID_OK, 29, 4, 42, 14, WS_GROUP
+        PUSHBUTTON      "~Cancel", DID_CANCEL, 83, 4, 42, 14
+    END
+END

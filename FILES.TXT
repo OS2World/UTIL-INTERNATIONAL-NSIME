@@ -1,0 +1,6 @@
+ NSIME.EXE     ... メインの実行ファイル
+ NSIMEDLL.DLL  ... 実行時ライブラリファイル
+ SOURCE.ZIP    ... ソースファイルのアーカイブ
+ FILES.TXT     ... このファイル
+
+ ※実行時に必須なのは、NSIME.EXE と NSIMEDLL.DLL のみです。

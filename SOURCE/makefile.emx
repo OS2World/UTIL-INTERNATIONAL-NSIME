@@ -1,0 +1,71 @@
+# nsime.exe 及び nsimedll.dll の両方をビルドするためのメイクファイル
+# （emx/gcc用）
+#
+# 前提としている開発環境
+#
+# 　Ｃコンパイラ及びリンカ：emx/gcc
+# 　　　　　（Hobbes 等で入手可能）
+# 　リソースコンパイラ：RC
+# 　　　　　（ツールキットまたはＯＳに付属）
+# 　メイク：GNU-MAKE
+# 　　　　　（Hobbes 等で入手可能）
+# 　その他：日本語版 WARP4 に付属の J-Pocket に含まれているＩＭ用ツールキット
+# 　　　　　（os2im.h 及び os2im.lib を、それぞれインクルード/ライブラリの
+# 　　　　　ディレクトリにコピーする）
+# 　　　　　SED
+# 　　　　　（Hobbes 等で入手可能）
+
+# ツール定義
+#
+CC		=	gcc.exe
+LINK	=	gcc.exe
+
+CFLAGS	=	-c -Zomf -Zsys
+LFLAGS	=	-Zomf -Zsys
+
+
+# オブジェクトファイル定義
+#
+EXEOBJS	=	nsime.obj
+DLLOBJS	=	nsimedll.obj
+
+
+# ビルド手順定義
+#
+nsime.exe: $(EXEOBJS) nsimedll.dll nsime.def nsimetmp.res
+	$(LINK) $(LFLAGS) -o $@ $(EXEOBJS) nsime.def
+	rc -p -x2 nsimetmp.res $@
+
+nsimedll.dll: $(DLLOBJS) nsimedll.def
+	$(LINK) $(LFLAGS) -Zdll -o $@ $(DLLOBJS) -l os2im.lib nsimedll.def
+
+.SUFFIXES: .obj .exe .dll
+
+.c.obj:
+	$(CC) $(CFLAGS) $< -o $*.obj
+
+nsime.obj: nsime.c nsimedll.h nsimeres.h nsimedlg.h nsimever.h
+
+nsimedll.obj: nsimedll.c nsimedll.h
+
+nsimetmp.res: nsimetmp.rc nsimeres.h nsimedlg.h nsimeico.ico
+	rc -r nsimetmp.rc $@
+
+nsimetmp.rc: nsimeres.rc nsimedlg.dlg
+	sed -e "s/DLGINCLUDE [0-9]*/#include/" nsimeres.rc nsimedlg.dlg > $@
+#
+# 　nsimedlg.h 及び nsimedlg.dlg（及び nsimedlg.res）は、OS/2 ツール
+# キットの「ダイアログ・エディター(DLGEDIT.EXE)」で作成したファイル
+# です。
+# 　nsimedlg.res は、メイクには必要無いのですが、「ダイアログ・エデ
+# ィター」で編集する事を念頭において同梱してあります。
+#
+
+# 注意：
+# 　IBM-C(NMAKE)用のメイクファイルには、ココに version.mak の内容を
+# nsimever.h に反映させる手順が記述されているのですが、emx/gcc
+# (GNU-MAKE)で実現する方法が解らないので、省かれています。
+# 　バージョン番号を変える場合は、version.mak ではなく nsimever.h を
+# 直接編集する必要があります。
+#
+

@@ -1,0 +1,7 @@
+; NSIMEDLL.DLL モジュール定義ファイル
+LIBRARY NSIMEDLL
+EXPORTS
+	NSIMEDLL_IsExistIme
+	NSIMEDLL_SetStatus
+	NSIMEDLL_InputProc
+	NSIMEDLL_SendMsgProc
